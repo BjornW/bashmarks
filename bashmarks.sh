@@ -48,7 +48,8 @@ bookmark (){
 
 # Show a list of the bookmarks
 bookmarksshow (){
-  cat ~/.bookmarks | awk '{ printf "%-40s%-40s%s\n",$1,$2,$3}' FS=\|
+  #cat ~/.bookmarks | awk '{ printf "%-40s%-40s%s\n",$1,$2,$3}' FS=\|
+  cat ~/.bookmarks | awk '{ printf "%s  %s\t%s\n",$3,$2,$1}' FS=\|
 }
 
 go(){
@@ -63,9 +64,8 @@ go(){
     echo 'To bookmark a folder, go to the folder then do this (naming the bookmark 'foo'):'
     echo '  bookmark foo'
     echo 
-    echo 'To list all bookmarks :'
-    echo '  bookmarksshow'
-
+    echo ' Available bookmarks: '
+    bookmarksshow
   else
     dir=`echo "$bookmark" | cut -d\| -f1`
     cd "$dir" 
